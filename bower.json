@@ -1,0 +1,17 @@
+{
+  "name": "angular-examples",
+  "version": "0.0.0",
+  "authors": [
+    "Yves Van Broekhoven <yvesvanbroekhoven@gmail.com>"
+  ],
+  "main": "application.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

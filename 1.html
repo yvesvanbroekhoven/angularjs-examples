@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Example 1</title>
+  <link rel="stylesheet" href="">
+</head>
+<body ng-app="MyApp">
+
+  <div ng-controller="BitbucketController">
+    <h1>{{username}}</h1>
+    <ul ng-repeat="repository in repositories">
+      <li>{{repository.name}}</li>
+    </ul>
+  </div>
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script>
+
+    var app = angular.module('MyApp', []);
+
+    app.controller('BitbucketController', function($scope, $http) {
+      $scope.username = "username loading...";
+
+      // Load user data
+      var getUser = $http.jsonp('https://bitbucket.org/api/2.0/users/yvesvanbroekhoven/?callback=JSON_CALLBACK');
+
+      getUser.success( function(data, status, headers, config) {
+        console.info('User loaded');
+        $scope.username = data.username;
+      });
+
+      getUser.error(function(data, status, headers, config) {
+        console.error('Error loading user');
+      });
+
+      // Load repositories
+      $http.jsonp('https://bitbucket.org/!api/2.0/repositories/yvesvanbroekhoven/?callback=JSON_CALLBACK')
+        .success( function(data, status, headers, config) {
+          console.info('Repositories loaded');
+          $scope.repositories = data.values;
+        })
+        .error( function(data, status, headers, config) {
+          console.error('Error loading repositories');
+        });
+
+    });
+  </script>
+</body>
+</html>
