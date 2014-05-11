@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Example 2</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+
+  <style>
+    .alert.ng-enter,
+    .alert.ng-leave {
+      -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+      transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+    }
+
+    .alert.ng-enter,
+    .alert.ng-leave.ng-leave-active {
+      opacity: 0;
+    }
+
+    .alert.ng-leave,
+    .alert.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body ng-app="MyApp">
+
+  <div ng-controller="TodoController" class="container">
+    <h1>Add todo</h1>
+    <form ng-submit="addTodo()">
+      <div class="form-group">
+        <label for="new-todo-title">Todo title</label>
+        <input id="new-todo-title" class="form-control" type="text" ng-model="new_todo.title" required />
+      </div>
+    </form>
+
+    <div ng-if="todos.length < 1" class="alert alert-success">
+      Yeah! Nothing to do for the moment. Add something to stay busy.
+    </div>
+
+    <ul>
+      <li ng-repeat="todo in todos">
+        <div>
+          {{todo.title}}
+        </div>
+        <small>
+          {{todo.created_at}}
+        </small>
+      </li>
+    </ul>
+  </div>
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script>
+
+    var app = angular.module('MyApp', []);
+
+    app.controller('TodoController', function($scope) {
+      $scope.todos = [];
+
+      $scope.addTodo = function() {
+        $scope.todos.push({
+          created_at: new Date,
+          title: $scope.new_todo.title
+        });
+      };
+    });
+  </script>
+</body>
+</html>
