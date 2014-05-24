@@ -1,0 +1,28 @@
+.alert.ng-enter,
+.alert.ng-leave {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1s;
+}
+
+.alert.ng-enter,
+.alert.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+
+.alert.ng-leave,
+.alert.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+.list-group-item.ng-enter,
+.list-group-item.ng-leave.ng-leave-active {
+  -webkit-animation: hinge 0.75s;
+  animation: hinge 0.75s;
+  z-index: 10;
+}
+
+.list-group-item.ng-leave,
+.list-group-item.ng-enter.ng-enter-active {
+  -webkit-animation: flipInX 0.5s;
+  animation: flipInX 0.5s;
+}

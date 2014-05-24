@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Example 2</title>
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../bower_components/animate.css/animate.css">
 
   <style>
     .alert.ng-enter,
@@ -21,6 +22,19 @@
     .alert.ng-leave,
     .alert.ng-enter.ng-enter-active {
       opacity: 1;
+    }
+
+    .list-group-item.ng-enter,
+    .list-group-item.ng-leave.ng-leave-active {
+      -webkit-animation: hinge 0.75s;
+      animation: hinge 0.75s;
+      z-index: 10;
+    }
+
+    .list-group-item.ng-leave,
+    .list-group-item.ng-enter.ng-enter-active {
+      -webkit-animation: flipInX 0.5s;
+      animation: flipInX 0.5s;
     }
   </style>
 </head>
@@ -40,14 +54,17 @@
     </div>
 
     <ul class="list-group">
-      <li class="list-group-item" ng-repeat="todo in todos | orderBy: '-created_at'">
-        {{todo.title}}
-
-        <small class="badge" >
-          {{todo.created_at | date:'shortDate'}}
-        </small>
-
+      <li class="list-group-item" ng-repeat="todo in todos | orderBy: '-title'">
         <a ng-click="removeTodo(todo)">x</a>
+
+        <div class="list-group-item-heading">
+          {{todo.title}}
+        </div>
+        <p class="list-group-item-text">
+          {{todo.created_at | date:'short'}}
+        </p>
+
+
       </li>
     </ul>
   </div>
@@ -66,6 +83,8 @@
           created_at: new Date,
           title: $scope.new_todo.title
         });
+
+        $scope.new_todo.title = '';
       };
 
       $scope.removeTodo = function(todo) {
