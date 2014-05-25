@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Example 4</title>
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="application.css">
+</head>
+<body ng-app="JournalsApp">
+
+  <div class="container">
+
+    <section ng-controller="JournalsController">
+      <h1>Journals</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(idx, journal) in journals | orderByPriority | orderBy: 'title'" ng-init="journal.edit_enabled = false">
+            <td>
+              <div ng-hide="journal.edit_enabled" ng-click="enableEdit(journal)">
+                {{journal.title}}
+              </div>
+              <form ng-submit="updateJournal(journal)" ng-show="journal.edit_enabled">
+                <div class="form-group">
+                  <input type="text" ng-model="journal.new_title" class="form-control" required />
+                </div>
+                <button type="submit" ng-show="journal.edit_enabled" class="btn btn-success btn-xs">
+                  Save
+                </button>
+
+                <button ng-click="disableEdit(journal)" ng-show="journal.edit_enabled" class="btn btn-warning btn-xs">
+                  Cancel
+                </button>
+              </form>
+            </td>
+            <td>
+              <button ng-click="removeJournal(journal.$id)" class="btn btn-danger btn-xs">
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div>
+        <h2>New journal</h2>
+        <form ng-submit="addJournal()">
+          <div class="form-group">
+            <label for="new-journal-title">Title</label>
+            <input name="new-journal-title" type="text" class="form-control" ng-model="new_journal.title" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+      </div>
+
+    </section>
+
+  </div>
+  <script src="https://cdn.firebase.com/js/client/1.0.15/firebase.js"></script>
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+  <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
+
+  <script src="application.js"></script>
+</body>
+</html>
