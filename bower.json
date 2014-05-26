@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "animate.css": "~3.1.1"
+    "animate.css": "~3.1.1",
+    "angular-route": "~1.2.16"
   }
 }
