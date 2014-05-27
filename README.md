@@ -13,4 +13,5 @@ A bunch of AngularJS experiments:
 ## How to use?
 
 - Download
-- Run ```bower install```
+- Run ``bower install```
+- Open ```index.html``` in one of the example folders
