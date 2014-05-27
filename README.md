@@ -8,3 +8,9 @@ A bunch of AngularJS experiments:
 3. Simple TODO app with Firebase backend
 4. Another CRUD app with Firebase backend
 5. Routing example
+
+
+## How to use?
+
+- Download
+- Run ```bower install```
