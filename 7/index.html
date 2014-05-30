@@ -5,20 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="fragment" content="!" />
   <title>Example 7</title>
+  <link rel="stylesheet" href="../bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="application.css">
 </head>
 <body ng-app="MyApp">
 
   <div ng-controller="mainController">
-    <nav>
+    <nav class="navigation">
       <ul class="">
-        <li><a href="#/" data-toggle="tab">Home</a></li>
-        <li><a href="#/about" data-toggle="tab">About</a></li>
+        <li ng-class="{active: $route.current.page_name == 'page-home'}">
+          <a href="#/">
+            Home
+          </a>
+        </li>
+        <li ng-class="{active: $route.current.page_name == 'page-about'}">
+          <a href="#/about">
+            About
+          </a>
+        </li>
       </ul>
       {{route}}
     </nav>
 
-    <div ng-view ng-class="{{$route.current.pageName}}"></div>
+    <div ng-view page-ready class="page {{$route.current.page_name}} page-animation"></div>
 
   </div>
   <script src="../bower_components/angular/angular.min.js"></script>

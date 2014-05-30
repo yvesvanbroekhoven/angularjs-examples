@@ -1,0 +1,68 @@
+html,
+body,
+body > div {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5em;
+}
+
+/* Navigation */
+.navigation {
+  background-color: rgba(0,0,0, 0.2);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.navigation li {
+  float: left;
+}
+
+.navigation a {
+  color: white;
+  display: block;
+  letter-spacing: 0.025em;
+  padding: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.navigation .active a {
+  border-bottom: 1px solid white;
+}
+
+
+/* Pages */
+.page {
+  height: 100%;
+  left: 0;
+  padding: 110px 50px 50px 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.page-home {
+  background-color: rgb(175,122,196);
+}
+
+.page-about {
+  background-color: rgb(71,201,175);
+}
+
+.page-404 {
+  background-color: rgb(230,91,97);
+}
